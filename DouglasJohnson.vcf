@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//Mac OS X 10.14.6//EN
+N:Johnson;Douglas;;;
+FN:Douglas Johnson
+item1.EMAIL;type=INTERNET;type=pref:dmjohnso@andrew.cmu.edu
+item1.X-ABLabel:College
+item2.EMAIL;type=INTERNET:dougthesage@gmail.com
+item2.X-ABLabel:Personal
+TEL;type=IPHONE;type=CELL;type=VOICE;type=pref:714-930-3723
+UID:72a6a814-2a46-49ea-9ba2-4390371ca534
+X-ABUID:DE0493A2-8154-4B0C-8579-BABE3AFA97D7:ABPerson
+END:VCARD
