@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Douglas Johnson</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asset">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="../assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Dark-NavBar-1.css">
+    <link rel="stylesheet" href="../assets/css/Dark-NavBar-2.css">
+    <link rel="stylesheet" href="../assets/css/Dark-NavBar.css">
+    <link rel="stylesheet" href="../assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="../assets/css/Data-Table.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/untitled-1.css">
+    <link rel="stylesheet" href="../assets/css/untitled.css">
+</head>
+
+<body style="background-color: rgb(255,255,255);">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="background-color: #000;">
+        <div class="container-fluid"><a class="navbar-brand" href="../index.html" style="color: rgb(255,255,255);font-size: 25;font-family: B612 Mono;">Douglas Johnson</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2" style="background-color: rgb(255,255,255);color: rgba(0,0,0,0);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="color: rgb(255,255,255);"></span></button>
+            <div
+                class="collapse navbar-collapse text-left" id="navcol-2" style="filter: brightness(100%) invert(0%);">
+                <ul class="nav navbar-nav ml-auto" style="margin-right: 0px;">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="../about.html" style="color: rgb(255,255,255);">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="../portfolio.html" style="color: #fff;">Projects</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="../blog.html" style="color: rgb(255,255,255);">Blog</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <h1 class="text-center" style="margin-top: 20px;">Craiglist Scraper</h1>
+    <p style="font-size: 12px;font-family: 'B612 Mono', monospace;width: 80%;margin-left: 10%;"><strong>Disclaimer: I am by no means an expert in any of this and if anyone reading this has any suggestions for this project I would love to hear from you.</strong><br></p>
+    <p style="font-size: 16px;font-family: 'B612 Mono', monospace;width: 80%;margin-left: 10%;">The goal of this project was to collect a list of cars and then write a program to scrape Craigslist and send me a list of all the cars that fit my criteria. The inspiration for this project was just to save myself the hours I waste scouring Craigslist
+        instead of working on more important things. So now instead of mindlessly browsing for an hour or so I can have a program collect everything in a couple of minutes and deliver it to me in one nice concise list. If you would like to see the code
+        I have a link to my Github repo&nbsp;<a href="#">here</a><br></p>
+    <h5 class="text-left" style="text-align: center;width: 80%;margin-left: 10%;"><strong>Creating the Database</strong><br></h5>
+    <p style="font-size: 16px;font-family: 'B612 Mono', monospace;margin-bottom: 16px;width: 80%;margin-right: 10%;margin-left: 10%;"><br>For this part of the project I decided to go with an excel sheet and while it’s not the most advanced solution its what I know and it will be easy for me to interact with and change through any number of programs designed for reading excel sheets.
+        As of July 2020 when searching for a car on Craigslist the main queries are make and model, model year, price range, mileage range, and the physical distance from a given zip code. So for now I will lay out my spreadsheet like this:<br></p>
+    <p
+        style="font-size: 16px;font-family: 'B612 Mono', monospace;margin-top: 16px;width: 80%;margin-left: 10%;">In the future I can add more parameters here if I so choose but for now I would like to keep it as simple as possible before I go crazy with it.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Parsing the Excel sheet</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-family: 'B612 Mono', monospace;font-size: 16px;">Next we need to parse the excel sheet and extract the data into a format that will be easier to use with my scraper, for now I will use json as its what I’m familiar with and it translates well to python. I will be using a dictionary to represent
+            each car and its parameters and I will store all of these cars in a list. In hindsight I could have just used a list for each car as the speed benefits of hashing in dictionaries are irrelevant in this case but that is something I will leave
+            for later.<br></p>
+        <p style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;width: 70%;margin-left: 15%;border-width: 1px;border-style: solid;">[{<br>&nbsp;&nbsp;"MM": "Mitsubishi 3000GT",<br>&nbsp;&nbsp;"MinP": 100,<br>&nbsp;&nbsp;"MaxP": 10000,<br>&nbsp;&nbsp;"MinY": 1980,<br>&nbsp;&nbsp;"MaxY": 2010,<br>&nbsp;&nbsp;"MinM": 0,<br>&nbsp;&nbsp;"MaxM": 500000,<br>&nbsp;&nbsp;"MilesFrom":
+            50,<br>&nbsp;&nbsp;"ZIP": 12345,<br>&nbsp;&nbsp;"Notes": null<br>}]</p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Creating the scraper</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">Now onto the more difficult part of the project, creating the scraper. To begin we first have to understand how to create a url that corresponds to a given search on craigslist. This is much easier than it sounds, although urls often look like
+            a jumbled mess, it's much easier to understand whats going on once you take a closer look. In this instance Craigslist uses <a href="https://en.wikipedia.org/wiki/Query_string">query strings</a>&nbsp;to represent individual searches on the
+            site. With a little code we can construct our own query strings and insert our own parameters to find a given page.&nbsp;<br><br>Great, so now that we have the page we need, now all we need to do is scrape the HTML&nbsp; for all of the links
+            on the page. If you are a complete beginner when it comes to HTML just know that every website is a hierarchy of tags representing different features of a webpage. In order to find a certain feature you have to search up and down this tree.
+            This isn’t as difficult as it sounds however as there are many different types of tags with many different classes and names so the one you're looking for likely has some unique descriptor. Furthermore we can use a library called <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup</a>&nbsp;to
+            make our lives much easier. In this case I can find all the links by first finding all the &lt;p&gt; tags and then all the &lt;a&gt; tags within those trees, lastly we can get the actual links by indexing into the ‘href’ class of all&nbsp;
+            the &lt;a&gt; tags that we found to get the links.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Delivering the content</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">Now that we have all the links we have to decide how we are going to present them and where we will run the scraper. This proved to be the most challenging part of the project for me as I initially wanted to send all the links myself through the
+            messaging app telegram. This worked great when I created the initial prototype on my laptop but I cant be running a telegram bot on my personal laptop 24/7 so I had to look for other options. I don’t have any type of home lab setup at the
+            moment so I cant host the bot without significantly inconveniencing myself so that only choice left was some sort of cloud computing from a service like AWS. Many months ago I tried using Heroku to host a chatbot with minimal success and didn’t
+            like it very much so this time I decided to experiment with AWS Lambda. After about a day of trial and error and reading through the Lambda documentation I became more and more convinced that I was using the wrong tool for the job. It appears
+            to me like AWS Lambda is for small functions that are embedded in web apps rather than chatbots that run on a recurring schedule. In any case I was only able to get a very basic chatbot up and running that repeats everything I say, I couldn’t
+            get Lambda to run the code I had written without errors. So for now I think I will keep this application local and if the urge to browse craigslist ever strikes I will simply run the file locally.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Where to go from here</strong></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">In the future I’d like to either sort out a cloud computing solution or create my own homelab that I can use to run these kinds of small applications. Both of these options would also give the ability to transform this application into something
+            more useful and user friendly. For example I can create a database and remove the spreadsheet making the user experience run exclusively through Telegram, or I could add the ability for on demand queries, or even a realtime monitor for a car
+            I desperately want to find before it disappears.<br> Lastly I’m sure someone is wondering why I wouldn’t just use Craigslist’s saved searches feature that emails you if any new listing shows up in one of your saved searches. It certainly would
+            have saved me a couple hours, however I would rather not flood my inbox further with something not related to school/work and&nbsp; with this I can add new features and choose whatever medium I want to deliver the list.&nbsp;<br></p>
+        <div class="justify-content-lg-center align-items-lg-end footer-dark"
+            style="height: auto;margin: 0px;background-color: rgb(0,0,0);margin-bottom: 0px;margin-top: 0px;width: 100%;padding-top: 30px;padding-bottom: 30px;">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col item social" style="padding-top: 0px;padding-right: 15px;padding-bottom: 0px;margin-bottom: 0px;"><a href="https://github.com/dougthesage"><i class="icon ion-social-github"></i></a><a href="https://github.com/dougthesage"><i class="icon ion-document-text"></i></a><a href="https://www.linkedin.com/in/dougmjohn/"><i class="icon ion-social-linkedin"></i></a>
+                            <a
+                                href="https://www.instagram.com/dougthesage/"><i class="icon ion-social-instagram"></i></a>
+                        </div>
+                    </div>
+                    <p class="copyright" style="padding-top: 15px;">Douglas Johnson © 2020</p>
+                </div>
+            </footer>
+        </div>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+</body>
+
+</html>
