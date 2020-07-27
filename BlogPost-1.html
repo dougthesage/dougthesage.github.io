@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Douglas Johnson</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asset">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar-1.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar-2.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar.css">
+    <link rel="stylesheet" href="assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="assets/css/Data-Table.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/untitled-1.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body style="background-color: rgb(255,255,255);">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top" style="background-color: #000;">
+        <div class="container-fluid"><a class="navbar-brand" href="index.html" style="color: rgb(255,255,255);font-size: 25;font-family: B612 Mono;">Douglas Johnson</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2" style="background-color: rgb(255,255,255);color: rgba(0,0,0,0);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="color: rgb(255,255,255);"></span></button>
+            <div
+                class="collapse navbar-collapse text-left" id="navcol-2" style="filter: brightness(100%) invert(0%);">
+                <ul class="nav navbar-nav ml-auto" style="margin-right: 0px;">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="about.html" style="color: rgb(255,255,255);">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="portfolio.html" style="color: #fff;">Projects</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="blog.html" style="color: rgb(255,255,255);">Blog</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <h1 class="text-center" style="margin-top: 20px;">Craiglist Scraper</h1>
+    <p style="font-size: 12px;font-family: 'B612 Mono', monospace;width: 80%;margin-left: 10%;"><strong>Disclaimer: I am by no means an expert in any of this and if anyone reading this has any suggestions for this project I would love to hear from you.</strong><br></p>
+    <p style="font-size: 16px;font-family: 'B612 Mono', monospace;width: 80%;margin-left: 10%;">The goal of this project was to collect a list of cars and then write a program to scrape Craigslist and send me a list of all the cars that fit my criteria. The inspiration for this project was just to save myself the hours I waste scouring Craigslist
+        instead of working on more important things. So now instead of mindlessly browsing for an hour or so I can have a program collect everything in a couple of minutes and deliver it to me in one nice concise list. If you would like to see the code
+        I have a link to my Github repo&nbsp;<a href="#">here</a><br></p>
+    <h5 class="text-left" style="text-align: center;width: 80%;margin-left: 10%;"><strong>Creating the Database</strong><br></h5>
+    <p style="font-size: 16px;font-family: 'B612 Mono', monospace;margin-bottom: 16px;width: 80%;margin-right: 10%;margin-left: 10%;"><br>For this part of the project I decided to go with an excel sheet and while it’s not the most advanced solution its what I know and it will be easy for me to interact with and change through any number of programs designed for reading excel sheets.
+        As of July 2020 when searching for a car on Craigslist the main queries are make and model, model year, price range, mileage range, and the physical distance from a given zip code. So for now I will lay out my spreadsheet like this:<br></p><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>63</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>66</td>
+                <td>2009/01/12</td>
+                <td>$86,000</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2012/03/29</td>
+                <td>$433,060</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>33</td>
+                <td>2008/11/28</td>
+                <td>$162,700</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Integration Specialist</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2012/12/02</td>
+                <td>$372,000</td>
+            </tr>
+            <tr>
+                <td>Herrod Chandler</td>
+                <td>Sales Assistant</td>
+                <td>San Francisco</td>
+                <td>59</td>
+                <td>2012/08/06</td>
+                <td>$137,500</td>
+            </tr>
+            <tr>
+                <td>Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010/10/14</td>
+                <td>$327,900</td>
+            </tr>
+            <tr>
+                <td>Colleen Hurst</td>
+                <td>Javascript Developer</td>
+                <td>San Francisco</td>
+                <td>39</td>
+                <td>2009/09/15</td>
+                <td>$205,500</td>
+            </tr>
+            <tr>
+                <td>Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+                <td>23</td>
+                <td>2008/12/13</td>
+                <td>$103,600</td>
+            </tr>
+            <tr>
+                <td>Jena Gaines</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>30</td>
+                <td>2008/12/19</td>
+                <td>$90,560</td>
+            </tr>
+            <tr>
+                <td>Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2013/03/03</td>
+                <td>$342,000</td>
+            </tr>
+            <tr>
+                <td>Charde Marshall</td>
+                <td>Regional Director</td>
+                <td>San Francisco</td>
+                <td>36</td>
+                <td>2008/10/16</td>
+                <td>$470,600</td>
+            </tr>
+            <tr>
+                <td>Haley Kennedy</td>
+                <td>Senior Marketing Designer</td>
+                <td>London</td>
+                <td>43</td>
+                <td>2012/12/18</td>
+                <td>$313,500</td>
+            </tr>
+            <tr>
+                <td>Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>19</td>
+                <td>2010/03/17</td>
+                <td>$385,750</td>
+            </tr>
+            <tr>
+                <td>Michael Silva</td>
+                <td>Marketing Designer</td>
+                <td>London</td>
+                <td>66</td>
+                <td>2012/11/27</td>
+                <td>$198,500</td>
+            </tr>
+            <tr>
+                <td>Paul Byrd</td>
+                <td>Chief Financial Officer (CFO)</td>
+                <td>New York</td>
+                <td>64</td>
+                <td>2010/06/09</td>
+                <td>$725,000</td>
+            </tr>
+            <tr>
+                <td>Gloria Little</td>
+                <td>Systems Administrator</td>
+                <td>New York</td>
+                <td>59</td>
+                <td>2009/04/10</td>
+                <td>$237,500</td>
+            </tr>
+            <tr>
+                <td>Bradley Greer</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>41</td>
+                <td>2012/10/13</td>
+                <td>$132,000</td>
+            </tr>
+            <tr>
+                <td>Dai Rios</td>
+                <td>Personnel Lead</td>
+                <td>Edinburgh</td>
+                <td>35</td>
+                <td>2012/09/26</td>
+                <td>$217,500</td>
+            </tr>
+            <tr>
+                <td>Jenette Caldwell</td>
+                <td>Development Lead</td>
+                <td>New York</td>
+                <td>30</td>
+                <td>2011/09/03</td>
+                <td>$345,000</td>
+            </tr>
+            <tr>
+                <td>Yuri Berry</td>
+                <td>Chief Marketing Officer (CMO)</td>
+                <td>New York</td>
+                <td>40</td>
+                <td>2009/06/25</td>
+                <td>$675,000</td>
+            </tr>
+            <tr>
+                <td>Caesar Vance</td>
+                <td>Pre-Sales Support</td>
+                <td>New York</td>
+                <td>21</td>
+                <td>2011/12/12</td>
+                <td>$106,450</td>
+            </tr>
+            <tr>
+                <td>Doris Wilder</td>
+                <td>Sales Assistant</td>
+                <td>Sidney</td>
+                <td>23</td>
+                <td>2010/09/20</td>
+                <td>$85,600</td>
+            </tr>
+            <tr>
+                <td>Angelica Ramos</td>
+                <td>Chief Executive Officer (CEO)</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2009/10/09</td>
+                <td>$1,200,000</td>
+            </tr>
+            <tr>
+                <td>Gavin Joyce</td>
+                <td>Developer</td>
+                <td>Edinburgh</td>
+                <td>42</td>
+                <td>2010/12/22</td>
+                <td>$92,575</td>
+            </tr>
+            <tr>
+                <td>Jennifer Chang</td>
+                <td>Regional Director</td>
+                <td>Singapore</td>
+                <td>28</td>
+                <td>2010/11/14</td>
+                <td>$357,650</td>
+            </tr>
+            <tr>
+                <td>Brenden Wagner</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>28</td>
+                <td>2011/06/07</td>
+                <td>$206,850</td>
+            </tr>
+            <tr>
+                <td>Fiona Green</td>
+                <td>Chief Operating Officer (COO)</td>
+                <td>San Francisco</td>
+                <td>48</td>
+                <td>2010/03/11</td>
+                <td>$850,000</td>
+            </tr>
+            <tr>
+                <td>Shou Itou</td>
+                <td>Regional Marketing</td>
+                <td>Tokyo</td>
+                <td>20</td>
+                <td>2011/08/14</td>
+                <td>$163,000</td>
+            </tr>
+            <tr>
+                <td>Michelle House</td>
+                <td>Integration Specialist</td>
+                <td>Sidney</td>
+                <td>37</td>
+                <td>2011/06/02</td>
+                <td>$95,400</td>
+            </tr>
+            <tr>
+                <td>Suki Burks</td>
+                <td>Developer</td>
+                <td>London</td>
+                <td>53</td>
+                <td>2009/10/22</td>
+                <td>$114,500</td>
+            </tr>
+            <tr>
+                <td>Prescott Bartlett</td>
+                <td>Technical Author</td>
+                <td>London</td>
+                <td>27</td>
+                <td>2011/05/07</td>
+                <td>$145,000</td>
+            </tr>
+            <tr>
+                <td>Gavin Cortez</td>
+                <td>Team Leader</td>
+                <td>San Francisco</td>
+                <td>22</td>
+                <td>2008/10/26</td>
+                <td>$235,500</td>
+            </tr>
+            <tr>
+                <td>Martena Mccray</td>
+                <td>Post-Sales support</td>
+                <td>Edinburgh</td>
+                <td>46</td>
+                <td>2011/03/09</td>
+                <td>$324,050</td>
+            </tr>
+            <tr>
+                <td>Unity Butler</td>
+                <td>Marketing Designer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009/12/09</td>
+                <td>$85,675</td>
+            </tr>
+            <tr>
+                <td>Howard Hatfield</td>
+                <td>Office Manager</td>
+                <td>San Francisco</td>
+                <td>51</td>
+                <td>2008/12/16</td>
+                <td>$164,500</td>
+            </tr>
+            <tr>
+                <td>Hope Fuentes</td>
+                <td>Secretary</td>
+                <td>San Francisco</td>
+                <td>41</td>
+                <td>2010/02/12</td>
+                <td>$109,850</td>
+            </tr>
+            <tr>
+                <td>Vivian Harrell</td>
+                <td>Financial Controller</td>
+                <td>San Francisco</td>
+                <td>62</td>
+                <td>2009/02/14</td>
+                <td>$452,500</td>
+            </tr>
+            <tr>
+                <td>Timothy Mooney</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>37</td>
+                <td>2008/12/11</td>
+                <td>$136,200</td>
+            </tr>
+            <tr>
+                <td>Jackson Bradshaw</td>
+                <td>Director</td>
+                <td>New York</td>
+                <td>65</td>
+                <td>2008/09/26</td>
+                <td>$645,750</td>
+            </tr>
+            <tr>
+                <td>Olivia Liang</td>
+                <td>Support Engineer</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2011/02/03</td>
+                <td>$234,500</td>
+            </tr>
+            <tr>
+                <td>Bruno Nash</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>38</td>
+                <td>2011/05/03</td>
+                <td>$163,500</td>
+            </tr>
+            <tr>
+                <td>Sakura Yamamoto</td>
+                <td>Support Engineer</td>
+                <td>Tokyo</td>
+                <td>37</td>
+                <td>2009/08/19</td>
+                <td>$139,575</td>
+            </tr>
+            <tr>
+                <td>Thor Walton</td>
+                <td>Developer</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2013/08/11</td>
+                <td>$98,540</td>
+            </tr>
+            <tr>
+                <td>Finn Camacho</td>
+                <td>Support Engineer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009/07/07</td>
+                <td>$87,500</td>
+            </tr>
+            <tr>
+                <td>Serge Baldwin</td>
+                <td>Data Coordinator</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2012/04/09</td>
+                <td>$138,575</td>
+            </tr>
+            <tr>
+                <td>Zenaida Frank</td>
+                <td>Software Engineer</td>
+                <td>New York</td>
+                <td>63</td>
+                <td>2010/01/04</td>
+                <td>$125,250</td>
+            </tr>
+            <tr>
+                <td>Zorita Serrano</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>56</td>
+                <td>2012/06/01</td>
+                <td>$115,000</td>
+            </tr>
+            <tr>
+                <td>Jennifer Acosta</td>
+                <td>Junior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>43</td>
+                <td>2013/02/01</td>
+                <td>$75,650</td>
+            </tr>
+            <tr>
+                <td>Cara Stevens</td>
+                <td>Sales Assistant</td>
+                <td>New York</td>
+                <td>46</td>
+                <td>2011/12/06</td>
+                <td>$145,600</td>
+            </tr>
+            <tr>
+                <td>Hermione Butler</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2011/03/21</td>
+                <td>$356,250</td>
+            </tr>
+            <tr>
+                <td>Lael Greer</td>
+                <td>Systems Administrator</td>
+                <td>London</td>
+                <td>21</td>
+                <td>2009/02/27</td>
+                <td>$103,500</td>
+            </tr>
+            <tr>
+                <td>Jonas Alexander</td>
+                <td>Developer</td>
+                <td>San Francisco</td>
+                <td>30</td>
+                <td>2010/07/14</td>
+                <td>$86,500</td>
+            </tr>
+            <tr>
+                <td>Shad Decker</td>
+                <td>Regional Director</td>
+                <td>Edinburgh</td>
+                <td>51</td>
+                <td>2008/11/13</td>
+                <td>$183,000</td>
+            </tr>
+            <tr>
+                <td>Michael Bruce</td>
+                <td>Javascript Developer</td>
+                <td>Singapore</td>
+                <td>29</td>
+                <td>2011/06/27</td>
+                <td>$183,000</td>
+            </tr>
+            <tr>
+                <td>Donna Snider</td>
+                <td>Customer Support</td>
+                <td>New York</td>
+                <td>27</td>
+                <td>2011/01/25</td>
+                <td>$112,000</td>
+            </tr>
+        </tbody>
+    </table>
+    <p
+        style="font-size: 16px;font-family: 'B612 Mono', monospace;margin-top: 16px;width: 80%;margin-left: 10%;">In the future I can add more parameters here if I so choose but for now I would like to keep it as simple as possible before I go crazy with it.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Parsing the Excel sheet</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-family: 'B612 Mono', monospace;font-size: 16px;">Next we need to parse the excel sheet and extract the data into a format that will be easier to use with my scraper, for now I will use json as its what I’m familiar with and it translates well to python. I will be using a dictionary to represent
+            each car and its parameters and I will store all of these cars in a list. In hindsight I could have just used a list for each car as the speed benefits of hashing in dictionaries are irrelevant in this case but that is something I will leave
+            for later.<br></p>
+        <p style="font-family: 'Cutive Mono', monospace;background-color: #f0f0f0;padding-left: 10px;padding-right: 10px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;overflow-x: scroll;width: 70%;margin-left: 15%;border-width: 1px;border-style: solid;">[{<br>&nbsp;&nbsp;"MM": "Mitsubishi 3000GT",<br>&nbsp;&nbsp;"MinP": 100,<br>&nbsp;&nbsp;"MaxP": 10000,<br>&nbsp;&nbsp;"MinY": 1980,<br>&nbsp;&nbsp;"MaxY": 2010,<br>&nbsp;&nbsp;"MinM": 0,<br>&nbsp;&nbsp;"MaxM": 500000,<br>&nbsp;&nbsp;"MilesFrom":
+            50,<br>&nbsp;&nbsp;"ZIP": 12345,<br>&nbsp;&nbsp;"Notes": null<br>}]</p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Creating the scraper</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">Now onto the more difficult part of the project, creating the scraper. To begin we first have to understand how to create a url that corresponds to a given search on craigslist. This is much easier than it sounds, although urls often look like
+            a jumbled mess, it's much easier to understand whats going on once you take a closer look. In this instance Craigslist uses <a href="https://en.wikipedia.org/wiki/Query_string">query strings</a>&nbsp;to represent individual searches on the
+            site. With a little code we can construct our own query strings and insert our own parameters to find a given page.&nbsp;<br><br>Great, so now that we have the page we need, now all we need to do is scrape the HTML&nbsp; for all of the links
+            on the page. If you are a complete beginner when it comes to HTML just know that every website is a hierarchy of tags representing different features of a webpage. In order to find a certain feature you have to search up and down this tree.
+            This isn’t as difficult as it sounds however as there are many different types of tags with many different classes and names so the one you're looking for likely has some unique descriptor. Furthermore we can use a library called <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup</a>&nbsp;to
+            make our lives much easier. In this case I can find all the links by first finding all the &lt;p&gt; tags and then all the &lt;a&gt; tags within those trees, lastly we can get the actual links by indexing into the ‘href’ class of all&nbsp;
+            the &lt;a&gt; tags that we found to get the links.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Delivering the content</strong><br></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">Now that we have all the links we have to decide how we are going to present them and where we will run the scraper. This proved to be the most challenging part of the project for me as I initially wanted to send all the links myself through the
+            messaging app telegram. This worked great when I created the initial prototype on my laptop but I cant be running a telegram bot on my personal laptop 24/7 so I had to look for other options. I don’t have any type of home lab setup at the
+            moment so I cant host the bot without significantly inconveniencing myself so that only choice left was some sort of cloud computing from a service like AWS. Many months ago I tried using Heroku to host a chatbot with minimal success and didn’t
+            like it very much so this time I decided to experiment with AWS Lambda. After about a day of trial and error and reading through the Lambda documentation I became more and more convinced that I was using the wrong tool for the job. It appears
+            to me like AWS Lambda is for small functions that are embedded in web apps rather than chatbots that run on a recurring schedule. In any case I was only able to get a very basic chatbot up and running that repeats everything I say, I couldn’t
+            get Lambda to run the code I had written without errors. So for now I think I will keep this application local and if the urge to browse craigslist ever strikes I will simply run the file locally.<br></p>
+        <h5 class="text-left" style="width: 80%;margin-left: 10%;"><strong>Where to go from here</strong></h5>
+        <p style="width: 80%;margin-left: 10%;font-size: 16px;font-family: 'B612 Mono', monospace;">In the future I’d like to either sort out a cloud computing solution or create my own homelab that I can use to run these kinds of small applications. Both of these options would also give the ability to transform this application into something
+            more useful and user friendly. For example I can create a database and remove the spreadsheet making the user experience run exclusively through Telegram, or I could add the ability for on demand queries, or even a realtime monitor for a car
+            I desperately want to find before it disappears.<br> Lastly I’m sure someone is wondering why I wouldn’t just use Craigslist’s saved searches feature that emails you if any new listing shows up in one of your saved searches. It certainly would
+            have saved me a couple hours, however I would rather not flood my inbox further with something not related to school/work and&nbsp; with this I can add new features and choose whatever medium I want to deliver the list.&nbsp;<br></p>
+        <div class="justify-content-lg-center align-items-lg-end footer-dark"
+            style="height: auto;margin: 0px;background-color: rgb(0,0,0);margin-bottom: 0px;margin-top: 0px;width: 100%;padding-top: 30px;padding-bottom: 30px;">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col item social" style="padding-top: 0px;padding-right: 15px;padding-bottom: 0px;margin-bottom: 0px;"><a href="https://github.com/dougthesage"><i class="icon ion-social-github"></i></a><a href="https://github.com/dougthesage"><i class="icon ion-document-text"></i></a><a href="https://www.linkedin.com/in/dougmjohn/"><i class="icon ion-social-linkedin"></i></a>
+                            <a
+                                href="https://www.instagram.com/dougthesage/"><i class="icon ion-social-instagram"></i></a>
+                        </div>
+                    </div>
+                    <p class="copyright" style="padding-top: 15px;">Douglas Johnson © 2020</p>
+                </div>
+            </footer>
+        </div>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+</body>
+
+</html>
